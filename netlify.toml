@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/trade-appraisal"
+  to = "/.netlify/functions/trade-appraisal"
+  status = 200
+
+[[redirects]]
+  from = "/success"
+  to = "/success/"
+  status = 301
