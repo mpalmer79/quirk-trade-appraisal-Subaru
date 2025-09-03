@@ -146,6 +146,9 @@ function bootstrapCommonMakesIfEmpty() {
 
 /* -------------------- Wire up events on DOM ready -------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  // Global sentinel for VIN auto-decode (so we can reset it on Clear)
+  window.__lastVin = "";
+
   // Bootstrap selects if needed
   populateYearsIfEmpty();
   bootstrapCommonMakesIfEmpty();
@@ -206,11 +209,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Auto-decode when VIN becomes valid (17 chars)
   if (vinInput) {
-    let last = "";
     vinInput.addEventListener("input", debounce(() => {
       const v = (vinInput.value || "").toUpperCase().replace(/\s+/g, "");
-      if (v !== last) {
-        last = v;
+      if (v !== window.__lastVin) {
+        window.__lastVin = v;
         if (validVin(v)) doDecode();
       }
     }, 300));
@@ -339,6 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 })();
+
 /* -------------------- Clear Form wiring -------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("tradeForm");
@@ -373,6 +376,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const el = document.getElementById(id);
         if (el) el.value = "";
       });
+
+      // Reset VIN auto-decode sentinel so the same VIN re-triggers after clearing
+      window.__lastVin = "";
 
       if (typeof applyI18n === "function") {
         const lang = sessionStorage.getItem("quirk_lang") || "en";
