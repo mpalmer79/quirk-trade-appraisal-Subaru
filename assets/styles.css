@@ -1,0 +1,223 @@
+:root {
+  --quirk-green:#002D72;
+  --quirk-green-dark:#005BAC;
+  --ink:#0c1b16;
+  --muted:#555;
+  --bg:#f7f7f7;
+  --danger:#c1121f;
+  --ok:#107a3d;
+}
+
+html, body { height: 100%; }
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 20px;
+  color: var(--ink);
+}
+
+form {
+  max-width: 820px;
+  margin: auto;
+  background: #fff;
+  padding: 20px 20px 28px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2 {
+  color: #004a2f;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+p.lead { text-align:center; margin:4px 0 14px; }
+/* Ford welcome message */
+.welcome-text {
+  font-weight: 700;  /* bold */
+}
+
+label {
+  display:block;
+  margin:12px 0 6px;
+  font-weight:600;
+}
+.req::after { content:" *"; color:var(--danger); }
+
+input, select, textarea {
+  width:100%;
+  max-width:100%;
+  padding:10px;
+  border:1px solid #ccd1cd;
+  border-radius:6px;
+  font-size:14px;
+  background:#fff;
+  box-sizing:border-box;
+}
+input:focus, select:focus, textarea:focus {
+  outline:2px solid #9ad7c0;
+  border-color:#46b38b;
+}
+input:invalid, select:invalid, textarea:invalid { border-color:#e4a2a7; }
+select:disabled { background:#f1f1f1; color:#777; }
+textarea { resize: vertical; }
+
+.section { margin-bottom:28px; }
+
+.row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+@media (max-width:720px){
+  .row { grid-template-columns:1fr; }
+}
+
+/* Submit button */
+button[type="submit"] {
+  background: var(--quirk-green);
+  color:#fff;
+  border:none;
+  padding:14px 24px;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+  display:block;
+  margin:20px auto 0 auto;
+}
+button[type="submit"]:hover { background: var(--quirk-green-dark); }
+button[disabled] { opacity:.6; cursor:not-allowed; }
+@media (max-width:640px){
+  button[type="submit"] { width:100%; }
+}
+
+/* Cards & helpers */
+.agreement-card {
+  background:#f9fbf9;
+  border:1px solid #d9efe4;
+  border-left:6px solid var(--quirk-green);
+  border-radius:10px;
+  padding:14px;
+}
+.disclaimer { font-size:15px; color:#18352c; margin:0; font-weight:600; }
+.checkbox-row { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:12px; }
+.checkbox-row input[type="checkbox"]{ width:22px; height:22px; min-width:22px; accent-color: var(--quirk-green); cursor:pointer; }
+.checkbox-row label{ margin:0; font-weight:700; color:#0d3a2c; cursor:pointer; }
+
+/* Header */
+.header-title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:8px; }
+.header-logo-icon { width:40px; height:40px; flex-shrink:0; }
+
+/* Top bar with actions + language toggle */
+.utilitybar {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  justify-content:space-between;   /* left tools vs right toggle */
+  margin: 6px 0 14px;
+  flex-wrap:wrap;                  /* allow wrap on narrow screens */
+}
+.left-actions { display:flex; gap:10px; align-items:center; }
+
+.spanish-btn,
+.ghost-btn {
+  background: var(--quirk-green);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.15s ease;
+}
+.ghost-btn { background:#eef7f2; color:#0f3b2b; border:1px solid #cfe7db; }
+.spanish-btn:hover { background: var(--quirk-green-dark); }
+
+/* Phone field (now input only; 15-character width) */
+.phone-wrapper { display:block; }
+#phone {
+  width: 15ch;
+  min-width: 15ch;
+  max-width: 15ch;
+}
+
+.hint { font-size:12px; color:var(--muted); margin-top:6px; }
+.spinner { display:inline-block; width:16px; height:16px; border:2px solid #ddd; border-top-color: var(--quirk-green); border-radius:50%; animation: spin 0.7s linear infinite; vertical-align:middle; }
+@keyframes spin { to { transform: rotate(360deg);} }
+.visually-hidden { position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+
+/* Toast */
+.toast { position:fixed; bottom:16px; left:50%; transform:translateX(-50%); background:#0b3b2a; color:#fff; padding:10px 14px; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,.2); opacity:0; pointer-events:none; transition:opacity .2s ease; }
+.toast.show { opacity:1; pointer-events:auto; }
+
+/* Image previews */
+.preview-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:10px; margin-top:10px; }
+.thumb { position:relative; border:1px solid #e3e7e5; border-radius:8px; overflow:hidden; }
+.thumb img { width:100%; height:70px; object-fit:cover; display:block; }
+.thumb .meta { font-size:11px; padding:4px; text-align:center; }
+
+.smallprint { text-align:center; font-size:12px; color:#6b6b6b; margin-top:16px; }
+
+/* Branding */
+.branding{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: #fff; /* white background */
+  padding:10px 14px;
+  margin bottom: 12px;
+}
+
+#quirkBrand {
+  width: 260px;   /* adjust as needed */
+  height: 64px;   /* guarantees the SVG is visible */
+  line-height: 0;
+}
+#quirkBrand svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+}
+/* --- MOBILE ONLY: stack title above logo & keep both on the white card --- */
+@media (max-width: 600px) {
+  .header-title {
+    display: flex !important;          /* override any grid/float */
+    flex-direction: column !important; /* stack */
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .header-title .branding {
+    order: 2 !important;               /* logo below title */
+    float: none !important;
+    margin: 12px auto 0 !important;    /* center */
+    width: 100% !important;
+  }
+
+  .header-title h1 {
+    order: 1 !important;               /* title on top */
+    margin: 0 0 8px 0 !important;
+  }
+
+  /* Center the injected SVG wrapper and size it down */
+  #quirkBrand {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  #quirkBrand svg,
+  #quirkBrand img {
+    width: 180px !important;           /* tweak as you like (160–220) */
+    height: auto !important;
+    max-width: 90% !important;
+  }
+}
