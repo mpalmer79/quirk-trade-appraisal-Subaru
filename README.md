@@ -1,2 +1,1 @@
-# quirk-trade-appraisal-Subaru
-Sight Unseen trade appraisal tool
+Quirk Subaru Sight Unseen Trade Appraisal Tool
