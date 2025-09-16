@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["accidentLabel", "¿Ha estado el vehículo involucrado en un accidente?"],
     ["accidentRepair", "Si es así, ¿fue reparado profesionalmente?"],
     ["vehDetails", "Detalles del vehículo"],
-    ["vehCondition", "Condición del vehículo"],
+    ["vehCondition", "Cuéntenos sobre su vehículo"],
     ["warnings", "¿Alguna luz de advertencia en el tablero?"],
     ["mech", "Problemas mecánicos"],
     ["cosmetic", "Problemas cosméticos"],
