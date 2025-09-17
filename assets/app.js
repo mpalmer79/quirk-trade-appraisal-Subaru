@@ -268,6 +268,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ["phoneLabel", "Número de teléfono"],
     ["phoneHint", "Formato: (###) ###-####"],
     ["emailLabel", "Correo electrónico"],
+    ["consultantLabel", "¿Quién es su asesor de ventas?"],
+    ["consultantPlaceholder", "¿Con quién ha estado trabajando?"],
+    
     ["vinLabel", "VIN (obligatorio)"],
     ["vinHint", "El VIN se escribe en mayúsculas automáticamente; las letras I, O, Q no son válidas."],
     ["mileageLabel", "Kilometraje actual"],
