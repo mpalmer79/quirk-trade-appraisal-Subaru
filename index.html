@@ -37,10 +37,28 @@
         /* keep large but prevent overflow on narrow phones */
         font-size:clamp(22px, 6vw, 34px);
       }
+
+      /* ===== Mobile utility bar: center the Spanish button ===== */
+      .utilitybar{
+        display:flex;
+        flex-direction:column;
+        align-items:center;          /* horizontally center children */
+        gap:12px;
+      }
+      .utilitybar .left-actions{
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        justify-content:center;      /* keep Decode/Clear tidy on small screens */
+      }
+      .utilitybar .spanish-btn{
+        display:block;               /* allow auto margins to take effect */
+        margin:0 auto;               /* <-- centers ‘versión en español’ */
+      }
     }
 
     /* ===== Page watermark (quirk-lot3.webp) ===== */
-    :root { --wm-opacity: 0.35; } /* <-- adjust this to lighten/darken the watermark */
+    :root { --wm-opacity: 0.35; } /* adjust to lighten/darken the watermark */
 
     /* Put a soft, fixed watermark behind the whole page */
     body.has-watermark { position: relative; }
@@ -62,7 +80,7 @@
       Final Version:
       1. The 'netlify' attribute tells Netlify to process the form.
       2. The 'action="/success/index.html"' attribute now points directly to the success file.
-    -->
+  -->
   <form action="/.netlify/functions/trade-appraisal" enctype="multipart/form-data" id="tradeForm" method="post" netlify-honeypot="company">
     <!-- This is the honeypot field to catch bots -->
     <input autocomplete="off" name="company" style="position:absolute; left:-10000px; opacity:0; height:0; width:0;" tabindex="-1" type="text"/>
@@ -267,6 +285,7 @@
     <fieldset class="section">
       <legend class="visually-hidden">Photo Uploads</legend>
       <h2 data-i18n="photos">Photo Uploads (Optional)</h2>
+
       <label data-i18n="photosExterior">Exterior Photos</label>
       <input accept="image/*" id="photoExterior" multiple name="photoExterior" type="file"/>
       <div aria-live="polite" class="preview-grid" id="prevExterior"></div>
@@ -282,6 +301,7 @@
       <label data-i18n="photosDamage">Damage / Flaws</label>
       <input accept="image/*" id="photoDamage" multiple name="photoDamage" type="file"/>
       <div aria-live="polite" class="preview-grid" id="prevDamage"></div>
+
       <div class="hint" data-i18n="photoHint">Max 10MB per file; 24 files total.</div>
     </fieldset>
 
