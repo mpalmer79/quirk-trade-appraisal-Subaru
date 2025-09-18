@@ -5,41 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="successTitle">Thanks! - Quirk Subaru</title>
   <link rel="stylesheet" href="/assets/styles.css" />
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
+    /* Watermark background — light white overlay so the photo shows through */
+    body.success {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: url('/assets/quirk-lot.png') center center / cover no-repeat;
-      position: relative;
+      background:
+        /* ~60% image strength via 40% white overlay */
+        linear-gradient(rgba(255,255,255,.40), rgba(255,255,255,.40)),
+        url('/assets/quirk-lot.png') center / cover no-repeat fixed;
     }
 
-    /* Lighter overlay for softer watermark */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.05); /* lighter than 0.45 */
-      z-index: 0;
-    }
-
-    main {
-      position: relative;
-      z-index: 1;
+    /* Default card (mobile-first) */
+    main.success-card {
       max-width: 720px;
       margin: 40px auto;
-      background: #fff;
+      background: #fff;                     /* overridden below on mobile/desktop */
       padding: 24px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* MOBILE ONLY: small gap from the very top & 50% white card */
+    @media (max-width: 640px) {
+      main.success-card {
+        margin: 12px auto 24px;             /* little breathing room at top */
+        background: rgba(255,255,255,0.50); /* 50% white */
+        backdrop-filter: blur(1px);         /* subtle polish (supported browsers) */
+      }
+    }
+
+    /* DESKTOP/TABLET: center card both ways & 50% white */
+    @media (min-width: 641px) {
+      body.success {
+        display: flex;
+        align-items: center;                /* vertical centering */
+        justify-content: center;            /* horizontal centering */
+        padding: 40px 16px;                 /* page breathing room */
+      }
+      main.success-card {
+        margin: 0;                          /* flex takes care of centering */
+        background: rgba(255,255,255,0.50); /* 50% white */
+        backdrop-filter: blur(1px);
+      }
     }
   </style>
 </head>
-<body>
-  <main>
+<body class="success">
+  <main class="success-card">
     <h1 style="text-align:center;margin:0 0 10px;color:#004a2f" data-i18n="successHeading">
       Thank you!
     </h1>
@@ -51,7 +65,7 @@
       <a class="spanish-btn" href="/" style="text-decoration:none" data-i18n="submitAnother">
         Submit another vehicle
       </a>
-      <a class="ghost-btn" href="https://www.quirksubaruma.com" target="_blank" 
+      <a class="ghost-btn" href="https://www.quirksubaru.com" target="_blank" 
          rel="noopener noreferrer" style="text-decoration:none" data-i18n="backToDealer">
         Back to Quirk Subaru
       </a>
@@ -59,14 +73,14 @@
 
     <!-- Logo inside same white card -->
     <div style="margin-top:32px; text-align:center;">
-      <a href="https://www.quirksubaruma.com" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.quirksubaru.com" target="_blank" rel="noopener noreferrer">
         <img src="/assets/quirkworks-new.jpg" alt="Quirk Works Logo"
              style="width:100%; max-width:720px; height:auto; display:block; margin:0 auto; cursor:pointer;" />
       </a>
     </div>
   </main>
 
-  <!-- Load the same app.js to enable Spanish translation -->
+  <!-- Load the same app.js to enable Spanish translation, if used on your forms -->
   <script src="/assets/app.js"></script>
 </body>
 </html>
